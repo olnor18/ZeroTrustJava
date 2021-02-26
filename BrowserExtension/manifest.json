@@ -1,0 +1,28 @@
+{
+
+    "manifest_version": 2,
+    "name": "HTTPZeroTrust",
+    "version": "0.1",
+  
+    "description": "Handles HTTPZeroTrust",
+  
+    "icons": {
+      "48": "icons/48.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.mozilla.org/*"],
+        "js": ["borderify.js"]
+      }
+    ],
+
+    "protocol_handlers": [
+        {
+          "protocol": "ext+httpzt",
+          "name": "HTTPZeroTrust Extension",
+          "uriTemplate": "login.html?url=%s"
+        }
+      ]
+  
+  }
