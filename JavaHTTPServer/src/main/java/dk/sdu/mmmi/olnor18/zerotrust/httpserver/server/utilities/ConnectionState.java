@@ -59,8 +59,9 @@ public enum ConnectionState {
         private String key;
 
         @Override
-        public void setKey(String key){
+        public ConnectionState setKey(String key) {
             this.key = key;
+            return this;
         }
 
         @Override
@@ -83,24 +84,27 @@ public enum ConnectionState {
         private boolean valid = false;
 
         @Override
-        public void setKey(String key){
+        public ConnectionState setKey(String key) {
             this.key = key;
+            return this;
         }
 
         @Override
         public Promise parseRequest(String request, InetSocketAddress socketAddress, FilterLayerHandler handler) {
-            if (Encryptor.decryptMessage(request, this.key) == "ACK") {
-                return Promise.resolve(Encryptor.encryptMessage("SYNACK", this.key));
+            String decryptedMessage = Encryptor.decryptMessage(request, this.key);
+            if (decryptedMessage != null && decryptedMessage.equals("ACK")) {
+                this.valid = true;
+                return Promise.resolve().then((action, o) ->
+                    action.resolve(new Object[]{Encryptor.encryptMessage("SYNACK", this.key), this})
+                ).start();
             }
-            return Promise.reject("Invalid ACK");
+            return Promise.reject().then((action, o) -> action.reject("Invalid ACK")).start();
         }
 
         @Override
         public ConnectionState update() {
             if (valid) {
-                ConnectionState state = ENCRYPTED;
-                state.setKey(this.key);
-                return state;
+                return ENCRYPTED.setKey(this.key);
             } else {
                 return this;
             }
@@ -110,16 +114,20 @@ public enum ConnectionState {
         private String key;
 
         @Override
-        public void setKey(String key){
+        public ConnectionState setKey(String key) {
             this.key = key;
+            return this;
         }
 
         @Override
         public Promise parseRequest(String request, InetSocketAddress socketAddress, FilterLayerHandler handler) {
             if (request.isEmpty()) return Promise.reject("Request is empty");
             String requestDecoded = Encryptor.decryptMessage(request, this.key);
+            if (requestDecoded == null) {
+                return Promise.reject().then((action, o) -> action.reject("Invalid request")).start();
+            }
             return handeRequest(requestDecoded, socketAddress, this, handler).then((action, o) ->
-                action.resolve(Encryptor.encryptMessage((String) o, this.key))
+                    action.resolve(new Object[]{Encryptor.encryptMessage((String)((Object[])o)[0], this.key), this})
             );
         }
 
@@ -130,7 +138,9 @@ public enum ConnectionState {
     };
 
     public abstract Promise parseRequest(String request, InetSocketAddress socketAddress, FilterLayerHandler handler);
-    public abstract void setKey(String key);
+
+    public abstract ConnectionState setKey(String key);
+
     public abstract ConnectionState update();
 
     private static Promise handeRequest(String request, InetSocketAddress socketAddress, ConnectionState connectionState, FilterLayerHandler handler) {

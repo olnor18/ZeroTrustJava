@@ -3,7 +3,7 @@ package io.vacco.express;
 import com.sun.net.httpserver.HttpsConfigurator;
 import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.ISocketServer;
 import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPServer;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WebSocketServer;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSServer;
 import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.ServerType;
 import io.vacco.express.filter.FilterImpl;
 import io.vacco.express.filter.FilterLayerHandler;
@@ -357,7 +357,7 @@ public class Express implements Router {
 
                 InetSocketAddress socketAddress = this.hostname == null ? new InetSocketAddress(port) : new InetSocketAddress(this.hostname, port);
 
-                server = type != null && type.length != 0 && type[0] == ServerType.TCP ? new TCPServer(socketAddress, handler) : new WebSocketServer(socketAddress, handler);
+                server = type != null && type.length != 0 && type[0] == ServerType.TCP ? new TCPServer(socketAddress, handler) : new WSServer(socketAddress, handler);
                 server.start();
 
                 // Fire listener

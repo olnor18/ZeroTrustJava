@@ -9,10 +9,10 @@ import org.java_websocket.server.WebSocketServer;
 
 import java.net.InetSocketAddress;
 
-public class WebSocketConnectionHandler extends WebSocketServer {
+public class WSConnectionHandler extends WebSocketServer {
     public FilterLayerHandler handler;
 
-    public WebSocketConnectionHandler(InetSocketAddress address, FilterLayerHandler handler) {
+    public WSConnectionHandler(InetSocketAddress address, FilterLayerHandler handler) {
         super(address);
         this.handler = handler;
     }

@@ -35,6 +35,11 @@ public class RawHttpExchange {
         return connectionState;
     }
 
+    public void setConnectionState(ConnectionState connectionState) {
+        this.connectionState = connectionState;
+        ((PreprocessedStringOutputSteam) outputStream).updateState(this.connectionState);
+    }
+
     public RawHttpHeaders getRequestHeaders() {
         return rawHttpRequest.getHeaders();
     }

@@ -26,6 +26,10 @@ public class PreprocessedStringOutputSteam extends OutputStream {
     @Override
     public void close(){
         String response = stringBuilder.toString();
-        action.resolve(response+"\r\n\r\n");
+        action.resolve(new Object[]{response + "\r\n\r\n", connectionState});
+    }
+
+    public void updateState(ConnectionState connectionState) {
+        this.connectionState = connectionState;
     }
 }

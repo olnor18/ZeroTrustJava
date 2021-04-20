@@ -16,6 +16,14 @@ public class PersistanceHandler {
 
     public synchronized String getPublicKey(String username){
         //Do actual db lookup
-        return "-----BEGIN PUBLIC KEY-----\r\nMIIBITANBgkqhkiG9w0BAQEFAAOCAQ4AMIIBCQKCAQBizdksSU4mkQKNOLuo2gPr\r\nBl0czsaEWCNfPRYRUep86AXb/3ciBc7K4rfAfaHxGEy0ElNaB7jEpZqwqKFQnKI2\r\nei40x7+t4kj5OkV7mEmd9hd/nL1eReIp7D8rnsoH3oAEZ2PFejc8zcyZqSHXLCZG\r\nYn7MDZOmgCPbyJSIADghM5VBMbIwP7/+z8ANIi3ash3UvPc3RStaibGO2UCFlRWW\r\nBWyW84e4XG0Nh9PnfUAfF7ecQ5rBg5tdtZLerJrLZO4UOGPmRkVRjdk7ojil/qWo\r\nTTFzKBe6Bn5qClfkccrpVIqOwejS8+UkXu0zTjlumnPxrQaHXjs77tZKY8wGV0uV\r\nAgMGVTc=\r\n-----END PUBLIC KEY-----\r\n";
+        return "-----BEGIN PUBLIC KEY-----\n" +
+                "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhz8JPlZkGs2FsMQoHEQo\n" +
+                "kWwRYxLifJP/IC1CF6R434Ogr/sV/EOQ5qHOEvheH3pppM0n1JHyk1zxL8z2BhV4\n" +
+                "+wP0hwm36M/4bz3g+lMzHGE+N6TuN0DIvaP3w4PORZGasiYQnTXvieDfCQKYqqY8\n" +
+                "mW7YRsrqCUwtqyPeD0mCgfTXwmRsvWMBmy4EZBhLTBUb5FSHWEJELO84fzwakMnU\n" +
+                "DwwPSHShxDQQs71Ocltxzxnvl2D2a8lCYPKfBXFLxaoCpVc6OMr4aeit16eu7+re\n" +
+                "BsO6z7226VaahIY3h3zhkgIAnAx5/RqIfp+eKtdfG23pwYWA/wXqzGZ/z5BU+6WW\n" +
+                "TQIDBlU3\n" +
+                "-----END PUBLIC KEY-----";
     }
 }
