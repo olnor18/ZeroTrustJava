@@ -1,11 +1,10 @@
 package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities;
 
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState;
 import org.riversun.promise.Action;
-import org.riversun.promise.Promise;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.Socket;
 
 public class PreprocessedStringOutputSteam extends OutputStream {
     private StringBuilder stringBuilder;

@@ -59,26 +59,24 @@ function base64ToBase16(base64) {
 }
 
 function negotiateKeys(event) {
-    let body = event.data.split("\r\n\r\n")[1]
+    let body = event.data.substring(event.data.indexOf("\r\n\r\n")+1)
     console.log(body)
     scrypt_module_factory(function (scrypt) {
         let pwBytes = scrypt.crypto_scrypt(scrypt.encode_utf8(document.getElementsByTagName('form')[0].password.value), scrypt.encode_utf8(document.getElementsByTagName('form')[0].username.value), 16384, 8, 10, 128);
         let scryptPW = Array.from(pwBytes).map((i) => { return ('0' + i.toString(16)).slice(-2); }).join('')
         rsagen(scryptPW).then((keypair) => {
             let crypt = new JSEncrypt();
-            console.log(keypair.privateKey)
-            console.log(keypair.publicKey)
             crypt.setPrivateKey(keypair.privateKey)
             key = base64ToBase16(crypt.decrypt(body), 'base64')
-            console.log(key)
             let ack = CryptoJS.AES.encrypt("ACK", CryptoJS.enc.Hex.parse(key), { iv: CryptoJS.enc.Hex.parse("0000000000000000000000000000000") })
             socket.send(ack)
             socket.onmessage = (event) => {
                 if (decrypt(event.data) === "SYNACK"){
                     socket.onmessage = parseResponse
-                    console.log('Connection established')
                     socket.send(encrypt("GET / HTTP/1.1\nHost: localhost\n\n"))
                 } else {
+                    alert('Bad password or bad connection!')
+                    socket.close()
                     console.log(event.data)
                 }
             }
@@ -88,11 +86,8 @@ function negotiateKeys(event) {
 }
 
 function parseResponse(event) {
-    console.log(event.data)
     let decrypted = decrypt(event.data)
-    console.log(decrypted)
-    let body = decrypted.split("\r\n\r\n")[1]
-    console.log(body)
+    let body = decrypted.substring(decrypted.indexOf("\r\n\r\n")+1)
     document.getElementsByTagName('body')[0].innerHTML = body
 }
 

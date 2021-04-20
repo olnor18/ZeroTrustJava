@@ -33,8 +33,9 @@ public class Encryptor {
             cipher.init(Cipher.DECRYPT_MODE,  new SecretKeySpec(key, "AES"), new IvParameterSpec(new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}));
             byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(messageb64));
             return new String(plainText);
-        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IllegalArgumentException | InvalidAlgorithmParameterException e) {
             e.printStackTrace();
+            System.out.println(messageb64);
             return null;
         }
     }

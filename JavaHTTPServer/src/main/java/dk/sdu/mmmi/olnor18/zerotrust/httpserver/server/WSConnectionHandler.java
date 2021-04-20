@@ -1,7 +1,6 @@
 package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server;
 
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.ConnectionState;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.StateHandler;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.StateHandler;
 import io.vacco.express.filter.FilterLayerHandler;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;

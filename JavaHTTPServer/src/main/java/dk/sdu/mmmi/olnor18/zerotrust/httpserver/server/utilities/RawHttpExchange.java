@@ -3,13 +3,10 @@ package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpPrincipal;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState;
 import org.riversun.promise.Action;
-import org.riversun.promise.Promise;
 import rawhttp.core.*;
-import rawhttp.core.body.BodyReader;
-import rawhttp.core.body.FramedBody;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,10 +32,6 @@ public class RawHttpExchange {
         return connectionState;
     }
 
-    public void setConnectionState(ConnectionState connectionState) {
-        this.connectionState = connectionState;
-        ((PreprocessedStringOutputSteam) outputStream).updateState(this.connectionState);
-    }
 
     public RawHttpHeaders getRequestHeaders() {
         return rawHttpRequest.getHeaders();
