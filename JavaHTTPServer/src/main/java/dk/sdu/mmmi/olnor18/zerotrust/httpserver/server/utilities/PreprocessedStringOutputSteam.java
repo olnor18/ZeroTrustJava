@@ -28,7 +28,4 @@ public class PreprocessedStringOutputSteam extends OutputStream {
         action.resolve(new Object[]{response + "\r\n\r\n", connectionState});
     }
 
-    public void updateState(ConnectionState connectionState) {
-        this.connectionState = connectionState;
-    }
 }

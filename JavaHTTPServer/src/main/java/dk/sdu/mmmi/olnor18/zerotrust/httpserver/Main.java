@@ -26,7 +26,16 @@ public class Main {
             }
         });
 
-        app.get("/getLoginHTML", (req, res) -> {
+        app.get("/about", (req, res) -> {
+            try {
+                res.send(Paths.get(ClassLoader.getSystemResource("public/about.html").toURI()));
+            } catch (URISyntaxException e) {
+                res.sendStatus(Status._500);
+                e.printStackTrace();
+            }
+        });
+
+        app.get("/login", (req, res) -> {
             try {
                 res.send(Paths.get(ClassLoader.getSystemResource("public/login.html").toURI()));
             } catch (URISyntaxException e) {

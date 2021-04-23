@@ -351,20 +351,20 @@ public class Express implements Router {
     public void listen(ExpressListener onStart, int port, ServerType... type) {
         new Thread(() -> {
             try {
-
                 // Fire worker threads
                 worker.forEach(FilterWorker::start);
-
-                InetSocketAddress socketAddress = this.hostname == null ? new InetSocketAddress(port) : new InetSocketAddress(this.hostname, port);
-
-                server = type != null && type.length != 0 && type[0] == ServerType.TCP ? new TCPServer(socketAddress, handler) : new WSServer(socketAddress, handler);
+                InetSocketAddress socketAddress = this.hostname == null ?
+                        new InetSocketAddress(port) :
+                        new InetSocketAddress(this.hostname, port);
+                server = type != null && type.length != 0 && type[0] == ServerType.TCP ?
+                        new TCPServer(socketAddress, handler) :
+                        new WSServer(socketAddress, handler);
                 server.start();
 
                 // Fire listener
                 if (onStart != null) {
                     onStart.action();
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -15,7 +15,7 @@ public class PersistanceHandler {
     }
 
     public synchronized String getPublicKey(String username){
-        //Do actual db lookup
+        //test:password
         return "-----BEGIN PUBLIC KEY-----\n" +
                 "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhz8JPlZkGs2FsMQoHEQo\n" +
                 "kWwRYxLifJP/IC1CF6R434Ogr/sV/EOQ5qHOEvheH3pppM0n1JHyk1zxL8z2BhV4\n" +

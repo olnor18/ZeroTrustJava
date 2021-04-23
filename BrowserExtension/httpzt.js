@@ -4,7 +4,7 @@ let key
 export function initialize(_socket) {
     socket = _socket
     socket.onmessage = loadLogin
-    socket.send('GET /getLoginHTML HTTP/1.1\nHost: localhost\n\n')
+    socket.send('GET /login HTTP/1.1\nHost: localhost\n\n')
 };
 
 function loadLogin(event) {
@@ -23,28 +23,22 @@ function loadLogin(event) {
 function handleRegister(event) {
     let form = document.getElementsByTagName('form')[0]
     if (event.preventDefault) event.preventDefault();
-    if (isPasswordedLeaked(form.password.value)){
-
-    }
-    socket.onmessage = negotiateKeys;
-    socket.send(form.username.value);
+    checkPasswordedQuality(form.password.value).then(isSecure => {
+        if (!isSecure) {
+             alert('Bad password!')
+        } else {
+             //Do registration
+        }
+     })
     return false;
 }
 
 function handleLogin(event) {
     var form = document.getElementsByTagName('form')[0]
     if (event.preventDefault) event.preventDefault();
-    checkPasswordedQuality(form.password.value).then(isSecure => {
-       // if (!isSecure) {
-       //     alert('Bad password!')
-      //  } else {
-            socket.onmessage = negotiateKeys;
-            //let body = '{"username":"' + form.username.value + '"}'
-            //let request = `GET /getChallenge HTTP/1.1\nHost: localhost\nContent-Type: application/json\nContent-Length: ${body.length}\n\n${body}`
-            let request = 'GET /getChallenge/'+form.username.value+' HTTP/1.1\nHost: localhost\n\n'
-            socket.send(request);
-       // }
-    })
+    socket.onmessage = negotiateKeys;
+    let request = 'GET /getChallenge/'+form.username.value+' HTTP/1.1\nHost: localhost\n\n'
+    socket.send(request);
     return false;
 }
 
@@ -60,9 +54,10 @@ function base64ToBase16(base64) {
 
 function negotiateKeys(event) {
     let body = event.data.substring(event.data.indexOf("\r\n\r\n")+1)
-    console.log(body)
     scrypt_module_factory(function (scrypt) {
-        let pwBytes = scrypt.crypto_scrypt(scrypt.encode_utf8(document.getElementsByTagName('form')[0].password.value), scrypt.encode_utf8(document.getElementsByTagName('form')[0].username.value), 16384, 8, 10, 128);
+        let password = scrypt.encode_utf8(document.getElementsByTagName('form')[0].password.value)
+        let username = scrypt.encode_utf8(document.getElementsByTagName('form')[0].username.value)
+        let pwBytes = scrypt.crypto_scrypt(password, username, 16384, 8, 10, 128);
         let scryptPW = Array.from(pwBytes).map((i) => { return ('0' + i.toString(16)).slice(-2); }).join('')
         rsagen(scryptPW).then((keypair) => {
             let crypt = new JSEncrypt();
@@ -82,7 +77,11 @@ function negotiateKeys(event) {
             }
         })
     });
-    
+}
+
+function sendRawHTTPRequest(method, url){
+    let urlObj = new URL("http://localhost"+url)
+    socket.send(encrypt(method + " " +urlObj.pathname + urlObj.search+" HTTP/1.1\nHost: localhost\n\n"))
 }
 
 function parseResponse(event) {

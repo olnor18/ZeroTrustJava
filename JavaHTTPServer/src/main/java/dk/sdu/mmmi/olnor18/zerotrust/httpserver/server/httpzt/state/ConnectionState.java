@@ -17,11 +17,21 @@ public abstract class ConnectionState {
 
     public abstract ConnectionState update();
 
-    protected static Promise handeRequest(String request, InetSocketAddress socketAddress, ConnectionState connectionState, FilterLayerHandler handler) {
+    protected static Promise handeRequest(
+            String request,
+            InetSocketAddress socketAddress,
+            ConnectionState connectionState,
+            FilterLayerHandler handler
+    ) {
         if (request.isEmpty()) return Promise.reject("Request is empty");
         RawHttpRequest rawHttpRequest = new RawHttp().parseRequest(request);
         return Promise.resolve().then((action, o) -> {
-            RawHttpExchange rawHttpExchange = new RawHttpExchange(rawHttpRequest, socketAddress, connectionState, action);
+            RawHttpExchange rawHttpExchange = new RawHttpExchange(
+                    rawHttpRequest,
+                    socketAddress,
+                    connectionState,
+                    action
+            );
             handler.handle(rawHttpExchange);
         }).start();
     }

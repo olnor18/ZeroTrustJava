@@ -14,11 +14,3 @@ const socket = new WebSocket('ws://'+targetUrl);
 socket.onopen = async function (event) {
     initialize(socket);
 };
-
-
-// Listen for messages
-/*
-socket.onmessage = function (event) {
-    decode(event)
-    console.log('Message from server ', event.data);
-};*/
