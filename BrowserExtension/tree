@@ -1,0 +1,16 @@
+├───icons
+│   └───48.png
+├───vendor
+│   └───aes.min.js
+│   └───bundle.js
+│   └───jsencrypt.min.js
+│   └───purify.min.js
+│   └───scrypt.js
+│   └───sha1.min.js
+├───httpzt.js
+├───login.html
+├───login.js
+├───manifest.json
+├───register.html
+└───register.js
+

@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities;
+package io.vacco.express.http;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpContext;
@@ -12,6 +12,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
+
+/**
+ * @author olnor18
+ * HTTPExchange which uses rawhttp
+ */
 
 public class RawHttpExchange {
     private RawHttpRequest rawHttpRequest;

@@ -1,5 +1,6 @@
-package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server;
+package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.connections.tcp;
 
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.connections.ISocketServer;
 import io.vacco.express.filter.FilterLayerHandler;
 
 import java.io.IOException;
@@ -12,11 +13,6 @@ public class TCPServer implements ISocketServer {
     private boolean running = true;
     private FilterLayerHandler handler;
 
-    public TCPServer(InetSocketAddress socketAddress, FilterLayerHandler handler) throws IOException {
-        this.handler = handler;
-        serverSocket = new ServerSocket(socketAddress.getPort(), 0, socketAddress.getAddress());
-    }
-
     @Override
     public void stop(int i) {
         try {
@@ -28,7 +24,13 @@ public class TCPServer implements ISocketServer {
     }
 
     @Override
-    public void start() throws IOException {
+    public void setHandler(FilterLayerHandler handler) {
+        this.handler = handler;
+    }
+
+    @Override
+    public void start(InetSocketAddress socketAddress) throws IOException {
+        this.serverSocket = new ServerSocket(socketAddress.getPort(), 0, socketAddress.getAddress());
         if (handler == null) throw new IOException("Handler is null");
         new Thread(() -> {
             while (running) {

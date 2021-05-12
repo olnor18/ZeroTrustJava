@@ -1,6 +1,6 @@
 package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state;
 
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.Encryptor;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.utilities.Encryptor;
 import io.vacco.express.filter.FilterLayerHandler;
 import org.riversun.promise.Promise;
 

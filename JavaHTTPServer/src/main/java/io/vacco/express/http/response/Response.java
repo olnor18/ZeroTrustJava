@@ -1,7 +1,7 @@
 package io.vacco.express.http.response;
 
 import com.sun.net.httpserver.Headers;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange;
+import io.vacco.express.http.RawHttpExchange;
 import io.vacco.express.http.Cookie;
 import io.vacco.express.utils.MediaType;
 import io.vacco.express.utils.Status;
@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * @author Simon Reinisch
+ * @modified olnor18
  * Class for an http-response.
  */
 public class Response {

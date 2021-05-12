@@ -1,10 +1,8 @@
 package io.vacco.express;
 
 import com.sun.net.httpserver.HttpsConfigurator;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.ISocketServer;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPServer;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSServer;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.ServerType;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.connections.ISocketServer;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.connections.ws.WSServer;
 import io.vacco.express.filter.FilterImpl;
 import io.vacco.express.filter.FilterLayerHandler;
 import io.vacco.express.filter.FilterTask;
@@ -25,6 +23,7 @@ import java.util.concurrent.Executors;
 /**
  * @author Simon Reinisch
  * Core class of java-express
+ * @modified olnor18
  */
 public class Express implements Router {
 
@@ -318,7 +317,7 @@ public class Express implements Router {
      * This method is asynchronous so be sure to add an listener or keep it in mind!
      */
     public void listen() {
-        listen(null, 80);
+        listen(null, 80, new WSServer());
     }
 
     /**
@@ -327,8 +326,8 @@ public class Express implements Router {
      *
      * @param port The port.
      */
-    public void listen(int port, ServerType... type ) {
-        listen(null, port, type);
+    public void listen(int port, ISocketServer server ) {
+        listen(null, port, server);
     }
 
     /**
@@ -337,8 +336,8 @@ public class Express implements Router {
      *
      * @param onStart An listener which will be fired after the server is stardet.
      */
-    public void listen(ExpressListener onStart, ServerType... type) {
-        listen(onStart, 80, type);
+    public void listen(ExpressListener onStart, ISocketServer server) {
+        listen(onStart, 80, server);
     }
 
     /**
@@ -348,7 +347,7 @@ public class Express implements Router {
      * @param onStart An listener which will be fired after the server is stardet.
      * @param port    The port.
      */
-    public void listen(ExpressListener onStart, int port, ServerType... type) {
+    public void listen(ExpressListener onStart, int port, ISocketServer server) {
         new Thread(() -> {
             try {
                 // Fire worker threads
@@ -356,10 +355,12 @@ public class Express implements Router {
                 InetSocketAddress socketAddress = this.hostname == null ?
                         new InetSocketAddress(port) :
                         new InetSocketAddress(this.hostname, port);
-                server = type != null && type.length != 0 && type[0] == ServerType.TCP ?
-                        new TCPServer(socketAddress, handler) :
-                        new WSServer(socketAddress, handler);
-                server.start();
+                this.server = server;
+                if (server == null) {
+                    throw new IllegalArgumentException("Server cannot be null");
+                }
+                server.setHandler(this.handler);
+                server.start(socketAddress);
 
                 // Fire listener
                 if (onStart != null) {

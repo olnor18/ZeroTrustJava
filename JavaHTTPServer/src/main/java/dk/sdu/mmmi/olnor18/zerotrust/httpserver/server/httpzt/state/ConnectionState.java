@@ -1,6 +1,6 @@
 package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state;
 
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange;
+import io.vacco.express.http.RawHttpExchange;
 import io.vacco.express.filter.FilterLayerHandler;
 import org.riversun.promise.Promise;
 import rawhttp.core.RawHttp;

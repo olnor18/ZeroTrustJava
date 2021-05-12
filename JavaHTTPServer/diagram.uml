@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="370.0" y="318.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSServer</node>
+    <node x="649.0" y="1601.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.Encryptor</node>
+    <node x="201.0" y="74.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPServer</node>
+    <node x="694.0" y="826.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.CleartextState</node>
+    <node x="965.0" y="481.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.StateHandler</node>
+    <node x="241.0" y="1544.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.ServerType</node>
+    <node x="308.0" y="1731.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.PersistanceHandler</node>
+    <node x="602.0" y="518.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPSocketHandler</node>
+    <node x="426.0" y="1536.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.Main</node>
+    <node x="1023.0" y="1491.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.EncryptedState</node>
+    <node x="1082.0" y="984.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState</node>
+    <node x="0.0" y="577.0">io.vacco.express.Express</node>
+    <node x="1646.0" y="410.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange</node>
+    <node x="140.0" y="400.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.ISocketServer</node>
+    <node x="1605.0" y="1208.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.PreprocessedStringOutputSteam</node>
+    <node x="681.0" y="1224.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.NegotiatingState</node>
+    <node x="696.0" y="0.0">dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSConnectionHandler</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.PreprocessedStringOutputSteam" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState">
+      <point x="-2.316534978233449" y="4.43098924559979" />
+      <point x="-2.316534978233449" y="4.430989245599761" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSServer" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSConnectionHandler">
+      <point x="-3.0929405852060086" y="-3.9285771643669705" />
+      <point x="-3.0929405852060086" y="-3.9285771643669705" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.StateHandler" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.CleartextState">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="io.vacco.express.Express" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.ISocketServer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.NegotiatingState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.Encryptor">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPSocketHandler" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.StateHandler">
+      <point x="0.0" y="5.068968775248493" />
+      <point x="0.0" y="5.068968775248493" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.PreprocessedStringOutputSteam">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange">
+      <point x="-25.590246550700613" y="0.0" />
+      <point x="0.0" y="-18.5140677674153" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.NegotiatingState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.EncryptedState">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSConnectionHandler" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.StateHandler">
+      <point x="-5.960002995847276" y="0.0" />
+      <point x="-5.960002995847219" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.Main" target="io.vacco.express.Express">
+      <point x="-4.360715205568056" y="2.446254871416272" />
+      <point x="-4.360715205567999" y="2.4462548714162153" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPServer" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.ISocketServer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSServer" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.ISocketServer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.CleartextState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState">
+      <point x="1.9917138312530653" y="-4.586183164069574" />
+      <point x="1.991713831253037" y="-4.586183164069581" />
+    </edge>
+    <edge source="io.vacco.express.Express" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.WSServer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="io.vacco.express.Express" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPServer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.EncryptedState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState">
+      <point x="5.128781963793585" y="0.0" />
+      <point x="5.128781963793472" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState">
+      <point x="0.0" y="18.514067767415185" />
+      <point x="25.590246550700385" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.Main" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.Encryptor">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.CleartextState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.NegotiatingState">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.Main" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.ServerType">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="io.vacco.express.Express" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.ServerType">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.NegotiatingState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState">
+      <point x="-2.2657003920168677" y="-4.457196622723131" />
+      <point x="-2.2657003920169245" y="-4.457196622723131" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.Main" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.PersistanceHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPServer" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.TCPSocketHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.StateHandler" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState">
+      <point x="-5.245425606747176" y="0.0" />
+      <point x="-5.245425606747062" y="0.0" />
+    </edge>
+    <edge source="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.EncryptedState" target="dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.Encryptor">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal" zoom="0.6490774907749077" x="1787.4831490733181" y="992.0778851620239" />
+  <SelectedNodes>
+    <node>dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.ISocketServer</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

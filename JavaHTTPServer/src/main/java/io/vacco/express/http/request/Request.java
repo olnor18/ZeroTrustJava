@@ -1,6 +1,6 @@
 package io.vacco.express.http.request;
 
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange;
+import io.vacco.express.http.RawHttpExchange;
 import io.vacco.express.filter.Filter;
 import io.vacco.express.http.Cookie;
 import io.vacco.express.utils.Utils;
@@ -23,6 +23,7 @@ import java.util.Optional;
 
 /**
  * @author Simon Reinisch
+ * @modified olnor18
  * <p>
  * Class encapsulating HTTP request data
  */

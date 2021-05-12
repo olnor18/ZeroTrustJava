@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities;
+package io.vacco.express.http;
 
 import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState;
 import org.riversun.promise.Action;
@@ -6,6 +6,10 @@ import org.riversun.promise.Action;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * @author olnor18
+ * Outputstream which works with the ConnectionState
+ */
 public class PreprocessedStringOutputSteam extends OutputStream {
     private StringBuilder stringBuilder;
     private ConnectionState connectionState;

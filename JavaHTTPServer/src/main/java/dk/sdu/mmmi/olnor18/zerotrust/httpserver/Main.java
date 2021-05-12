@@ -1,9 +1,9 @@
 package dk.sdu.mmmi.olnor18.zerotrust.httpserver;
 
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.Encryptor;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.PersistanceHandler;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.ConnectionState;
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.ServerType;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.connections.tcp.TCPServer;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.connections.ws.WSServer;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.utilities.Encryptor;
+import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.persistance.ConstantStringPersistanceHandler;
 import io.vacco.express.Express;
 import io.vacco.express.middleware.Middleware;
 import io.vacco.express.utils.Status;
@@ -51,7 +51,7 @@ public class Main {
                 return;
             }
             String username = req.getParam("user");
-            String publicKey = PersistanceHandler.getInstance().getPublicKey(username);
+            String publicKey = ConstantStringPersistanceHandler.getInstance().getPublicKey(username);
             String challenge = Encryptor.encryptChallange(key, publicKey);
 
             if (challenge == null)  {
@@ -61,7 +61,7 @@ public class Main {
             req.exchange.getConnectionState().setKey(key);
             res.send(challenge);
         });
-
-        app.listen(8080, ServerType.WebSocket);
+        new TCPServer();
+        app.listen(8080, new WSServer());
     }
 }

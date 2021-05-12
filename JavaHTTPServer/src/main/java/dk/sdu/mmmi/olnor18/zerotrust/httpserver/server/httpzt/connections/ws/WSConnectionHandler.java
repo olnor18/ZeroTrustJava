@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server;
+package dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.connections.ws;
 
 import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.httpzt.state.StateHandler;
 import io.vacco.express.filter.FilterLayerHandler;

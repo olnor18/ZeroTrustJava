@@ -1,6 +1,6 @@
 package io.vacco.express.filter;
 
-import dk.sdu.mmmi.olnor18.zerotrust.httpserver.server.utilities.RawHttpExchange;
+import io.vacco.express.http.RawHttpExchange;
 import io.vacco.express.ExpressException;
 import io.vacco.express.http.HttpRequestHandler;
 import io.vacco.express.http.request.Request;
@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 
 /**
  * @author Simon Reinisch
+ * @modified olnor18
  * <p>
  * Handler for multiple FilterLayer.
  */
