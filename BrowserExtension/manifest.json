@@ -9,13 +9,7 @@
     "icons": {
       "48": "icons/48.png"
     },
-  
-    "content_scripts": [
-      {
-        "matches": ["*://*.mozilla.org/*"],
-        "js": ["borderify.js"]
-      }
-    ],
+
 
     "protocol_handlers": [
         {

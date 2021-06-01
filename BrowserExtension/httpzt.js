@@ -63,7 +63,9 @@ function negotiateKeys(event) {
             let crypt = new JSEncrypt();
             crypt.setPrivateKey(keypair.privateKey)
             key = base64ToBase16(crypt.decrypt(body), 'base64')
-            let ack = CryptoJS.AES.encrypt("ACK", CryptoJS.enc.Hex.parse(key), { iv: CryptoJS.enc.Hex.parse("0000000000000000000000000000000") })
+            let ack = CryptoJS.AES.encrypt("ACK", CryptoJS.enc.Hex.parse(key), { 
+                iv: CryptoJS.enc.Hex.parse("0000000000000000000000000000000") 
+            })
             socket.send(ack)
             socket.onmessage = (event) => {
                 if (decrypt(event.data) === "SYNACK"){
